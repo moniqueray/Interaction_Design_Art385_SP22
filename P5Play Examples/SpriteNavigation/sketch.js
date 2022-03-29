@@ -32,8 +32,8 @@ function setup() {
   ghost.addAnimation('floating', 'assets/ghost_standing0001.png', 'assets/ghost_standing0007.png');
   
   // create a star in the middle of the screen
-  //star = createSprite(width/2, height/2);
-  //star.addImage('star', starImg);
+  star = createSprite(width/2, height/2);
+  star.addImage('star', starImg);
 
   frameRate(30);
  }
@@ -50,7 +50,7 @@ function draw() {
   drawSprites();
 
   // callback function
-  //ghost.overlap(star, ghostCollision);
+  ghost.overlap(star, ghostCollision);
 }
 
 // This will reset position
@@ -83,13 +83,17 @@ function checkMovement() {
   else {
     ghost.velocity.y = 0;
   }
+
+  if(keyIsDown('w')) {
+    player.velocity.y = 4;
+  }
 }
 
 // SpriteA is the sprite in question, spriteA will be ghost in this case
 // SpriteB is the one that it collided with
 function ghostCollision(spriteA, spriteB) {
-  ghost.position.x = 100;
-  ghost.position.y = 100;
+  spriteA.position.x = 100;
+  spriteA.position.y = 100;
 
-  //spriteB.remove();
+  spriteB.remove();
 }
